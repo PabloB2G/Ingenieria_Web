@@ -66,6 +66,6 @@ public class Informe {
     
     public String toString()
     {
-	    return "Predicción = " + this.prediccion + "; " + "Contenido = " + this.contenido;    
+	    return "Predicción = " + this.prediccion + "; " + " Contenido = " + this.contenido;    
     }
 }
