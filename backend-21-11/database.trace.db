@@ -1,0 +1,8 @@
+2023-11-21 21:55:18 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (CUENTA: ""TITULAR_ID"" BIGINT)"
+Data conversion error converting "'' (CUENTA: ""TITULAR_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."CUENTA"("ID","BALANCE","CCC","TITULAR_ID")VALUES(?,?,?,?) [22018-214]
+2023-11-21 21:55:18 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "'' (CUENTA: ""TITULAR_ID"" BIGINT)"
+Data conversion error converting "'' (CUENTA: ""TITULAR_ID"" BIGINT)"; SQL statement:
+INSERT INTO "PUBLIC"."CUENTA"("ID","BALANCE","CCC","TITULAR_ID")VALUES(?,?,?,?) [22018-214]
