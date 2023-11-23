@@ -53,4 +53,19 @@ public class Informe {
         this.prediccion = prediccion;
         this.contenido = contenido;
     }
+
+    public boolean equals(Object obj)
+    {
+	    return (obj instanceof Informe) && ((Informe) obj).getContenido()==this.contenido;
+    }
+
+    public int hashCode()
+    {
+	    return this.contenido.hashCode();
+    }
+    
+    public String toString()
+    {
+	    return "Predicción = " + this.prediccion + "; " + "Contenido = " + this.contenido;    
+    }
 }
