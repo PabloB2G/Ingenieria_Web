@@ -1,7 +1,6 @@
 package com.uma.example.springuma.model;
 
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
 public class Imagen {
@@ -16,10 +15,6 @@ public class Imagen {
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
-    // Relación con Informe (una imagen puede tener muchos informes)
-    @OneToMany(mappedBy = "imagen", cascade = CascadeType.ALL)
-    private List<Informe> informes;
 
     // Constructor vacío
     public Imagen() {
@@ -50,14 +45,6 @@ public class Imagen {
         this.paciente = paciente;
     }
 
-    public List<Informe> getInformes() {
-        return informes;
-    }
-
-    public void setInformes(List<Informe> informes) {
-        this.informes = informes;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,7 +61,6 @@ public class Imagen {
                 "id=" + id +
                 ", path='" + path + '\'' +
                 ", paciente=" + paciente +
-                ", informes=" + informes +
                 '}';
     }
 }

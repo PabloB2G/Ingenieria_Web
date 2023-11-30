@@ -13,52 +13,52 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uma.example.springuma.model.Cuenta;
-import com.uma.example.springuma.model.CuentaService;
+import com.uma.example.springuma.model.Medico;
+import com.uma.example.springuma.model.MedicoService;
 
 @RestController
-public class CuentaController {
+public class MedicoController {
     
     @Autowired
-    private CuentaService cuentaService;
+    private MedicoService medicoService;
 
-    @GetMapping("/cuenta")
-    public List<Cuenta> getCuentas(){
-        return cuentaService.getAllCuentas();
-    }
-    
-    @GetMapping("/cuenta/{id}")
-    public Cuenta getCuenta(@PathVariable("id") Long id) {
-        return cuentaService.getCuenta(id);
+    @GetMapping("/medico")
+    public List<Medico> getAllMedicos(){
+        return medicoService.getAllMedicos();
     }
 
-    @PostMapping(value = "/cuenta",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
-	public ResponseEntity<?> saveCuenta(@RequestBody Cuenta cuenta) {
+    @GetMapping("/medico/{id}")
+    public Medico getMedico(Long id){
+        return medicoService.getMedico(id);
+    }
+
+    @PostMapping(value = "/medico",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
+	public ResponseEntity<?> saveMedico(@RequestBody Medico medico) {
         try{
-            cuentaService.addCuenta(cuenta);
+            medicoService.addMedico(medico);
             return ResponseEntity.noContent().build();
         }
         catch(Exception e){
-            return ResponseEntity.internalServerError().body("La cuenta ya existe");
+            return ResponseEntity.internalServerError().body("El medico ya existe");
         }
 	}
 
-    @PutMapping(value = "/cuenta",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
-    public ResponseEntity<?> updateCuenta (@RequestBody Cuenta cuenta) {
+    @PutMapping(value = "/medico",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
+    public ResponseEntity<?> updateMedico (@RequestBody Medico medico) {
         try{
-            cuentaService.updateCuenta(cuenta);
+            medicoService.updateMedico(medico);
             return ResponseEntity.noContent().build();
         }
         catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Error al actualizar la cuenta");
+            return ResponseEntity.internalServerError().body("Error al actualizar el medico");
         }
     }
 
-    @DeleteMapping("/cuenta/{id}")
-    public ResponseEntity<?> deleteCuenta(@PathVariable("id") Long id) {
+    @DeleteMapping("/medico/{id}")
+    public ResponseEntity<?> deleteMedico(@PathVariable("id") Long id) {
         try{
-            cuentaService.removeCuentaID(id);
+            medicoService.removeMedicoID(id);
             return ResponseEntity.noContent().build();
         }
         catch(Exception e){
@@ -66,4 +66,5 @@ public class CuentaController {
             return ResponseEntity.internalServerError().body("Error al eliminar la cuenta");
         }
     }
+
 }

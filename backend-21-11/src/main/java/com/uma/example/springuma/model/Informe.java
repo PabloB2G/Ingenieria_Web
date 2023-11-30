@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -20,6 +22,11 @@ public class Informe {
 
     @Column(name = "contenido", columnDefinition = "TEXT")
     private String contenido;
+
+    // Relación con imagen (muchas imágenes pueden pertenecer a un informe)
+    @ManyToOne
+    @JoinColumn(name = "imagen_id")
+    private Imagen imagen;
 
     public long getId() {
         return id;

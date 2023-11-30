@@ -1,7 +1,5 @@
 package com.uma.example.springuma.model;
 
-import com.uma.example.springuma.model.Imagen;
-import com.uma.example.springuma.model.RepositoryImagen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

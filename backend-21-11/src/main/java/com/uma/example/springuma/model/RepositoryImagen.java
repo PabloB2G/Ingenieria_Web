@@ -1,6 +1,5 @@
 package com.uma.example.springuma.model;
 
-import com.uma.example.springuma.model.Imagen;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositoryImagen extends JpaRepository<Imagen, Long> {
