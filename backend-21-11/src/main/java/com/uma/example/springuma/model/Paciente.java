@@ -96,5 +96,16 @@ public class Paciente {
     return dni != null ? dni.hashCode() : 0;
     }
 
+    @Override
+    public String toString() {
+    return "Paciente{" +
+            "id=" + id +
+            ", nombre='" + nombre + '\'' +
+            ", edad=" + edad +
+            ", cita='" + cita + '\'' +
+            ", dni='" + dni + '\'' +
+            ", medico=" + medico +
+            '}';
+    }
 
 }
