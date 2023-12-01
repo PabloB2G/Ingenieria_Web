@@ -41,4 +41,8 @@ public class PacienteService {
     public void removePacienteID(Long id){
         repositoryPaciente.deleteById(id); // Cambio a eliminar un Paciente por ID
     }
+
+    public List<Paciente> getPacientesMedico(Long id) {
+        return repositoryPaciente.findByMedicoId(id);
+    }
 }

@@ -32,6 +32,12 @@ public class PacienteController {
         return pacienteService.getPaciente(id);
     }
 
+    // Get all paciente of medico 1
+    @GetMapping("/paciente/medico/{id}")
+    public List<Paciente> getPacientes(@PathVariable("id") Long id) {
+        return pacienteService.getPacientesMedico(id);
+    }
+
     @PostMapping(value = "/paciente",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
 	public ResponseEntity<?> savePaciente(@RequestBody Paciente paciente) {
         try{
