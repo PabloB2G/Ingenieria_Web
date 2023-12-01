@@ -28,7 +28,7 @@ public class MedicoController {
     }
 
     @GetMapping("/medico/{id}")
-    public Medico getMedico(Long id){
+    public Medico getMedico(@PathVariable("id") Long id){
         return medicoService.getMedico(id);
     }
 
