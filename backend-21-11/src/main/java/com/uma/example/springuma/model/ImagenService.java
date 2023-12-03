@@ -34,4 +34,9 @@ public class ImagenService {
     public void removeImagenByID(Long id) {
         repositoryImagen.deleteById(id);
     }
+
+    public List<Imagen> getImagenesPaciente(Long id) {
+        return repositoryImagen.getByPacienteId(id);
+    }
+
 }

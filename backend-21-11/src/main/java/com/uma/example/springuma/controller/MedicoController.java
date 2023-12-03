@@ -63,7 +63,7 @@ public class MedicoController {
         }
         catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Error al eliminar la cuenta");
+            return ResponseEntity.internalServerError().body("Error al eliminar el medico");
         }
     }
 

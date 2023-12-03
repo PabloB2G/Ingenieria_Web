@@ -32,7 +32,6 @@ public class PacienteController {
         return pacienteService.getPaciente(id);
     }
 
-    // Get all paciente of medico 1
     @GetMapping("/paciente/medico/{id}")
     public List<Paciente> getPacientes(@PathVariable("id") Long id) {
         return pacienteService.getPacientesMedico(id);
