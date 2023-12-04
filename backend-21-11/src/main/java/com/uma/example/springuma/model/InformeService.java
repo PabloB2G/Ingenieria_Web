@@ -41,4 +41,8 @@ public class InformeService {
     public void removeInformeByID(Long id) {
         repositoryInforme.deleteById(id);
     }
+
+    public List<Informe> getInformesImagen(Long id) {
+        return repositoryInforme.findByImagenId(id);
+    }
 }

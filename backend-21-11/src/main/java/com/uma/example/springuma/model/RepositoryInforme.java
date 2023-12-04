@@ -1,8 +1,12 @@
 package com.uma.example.springuma.model;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositoryInforme extends JpaRepository<Informe, Long>{
+
+    List<Informe> findByImagenId(Long id);
 
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation
 	// Además de los metodos de consulta basicos, especifico un metodo que busque una cuenta por el CCC
