@@ -40,3 +40,4 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 _MACOSX
+target/classes/com/uma/example/springuma/model
