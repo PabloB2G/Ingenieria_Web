@@ -67,4 +67,16 @@ public class MedicoController {
         }
     }
 
+    // Buscar un medico por su dni
+    @GetMapping("/medico/dni/{dni}")
+    public ResponseEntity<Medico> getMedicoByDni(@PathVariable("dni") String dni) {
+        Medico medico = medicoService.getMedicoByDni(dni);
+        if (medico != null) {
+            return ResponseEntity.ok(medico);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

@@ -33,4 +33,8 @@ public class MedicoService {
     public void removeMedicoID(Long id){
         repositoryMedico.deleteById(id);
     }
+
+    public Medico getMedicoByDni(String dni) {
+        return repositoryMedico.getMedicoByDni(dni);
+    }
 }
