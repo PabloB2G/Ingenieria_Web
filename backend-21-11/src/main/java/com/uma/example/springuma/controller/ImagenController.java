@@ -1,20 +1,24 @@
 package com.uma.example.springuma.controller;
 
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uma.example.springuma.model.Imagen;
 import com.uma.example.springuma.model.ImagenService;
+import com.uma.example.springuma.model.Paciente;
 
 @RestController
 public class ImagenController {
@@ -31,41 +35,38 @@ public class ImagenController {
         return imagenService.getImagen(id);
     }
 
-    @PostMapping(value = "/imagen",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
-	public ResponseEntity<?> saveImagen(@RequestBody Imagen imagen) {
-        try{
-            imagenService.addImagen(imagen);
-            return ResponseEntity.noContent().build();
-        }
-        catch(Exception e){
-            return ResponseEntity.internalServerError().body("La imagen ya existe");
-        }
-	}
+ 
 
-    @PutMapping(value = "/imagen",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
-    public ResponseEntity<?> updateImagen (@RequestBody Imagen imagen) {
-        try{
-            imagenService.updateImagen(imagen);
-            return ResponseEntity.noContent().build();
+    @PostMapping("/imagen")
+public ResponseEntity<?> saveImagen(@RequestParam("file") MultipartFile file,
+                                    @RequestParam("paciente") String pacienteJson) {
+    try {
+        // Define the directory where you want to save the file
+        String directory = "backend-21-11/storage/";
+        Path storageDirectory = Paths.get(directory);
+        if (!Files.exists(storageDirectory)) {
+            Files.createDirectories(storageDirectory); // Create directory if it doesn't exist
         }
-        catch(Exception e){
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Error al actualizar la imagen");
-        }
+
+        // Create a path where the file will be stored
+        Path destinationPath = storageDirectory.resolve(file.getOriginalFilename());
+
+        // Copy the file to the destination path
+        Files.copy(file.getInputStream(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+        // Save the file path or URL in the Imagen entity
+        Imagen imagen = new Imagen();
+        imagen.setPath(destinationPath.toString());
+        Paciente paciente = new ObjectMapper().readValue(pacienteJson, Paciente.class);
+        imagen.setPaciente(paciente);
+        imagenService.addImagen(imagen);
+
+        return ResponseEntity.ok(imagen); // Return the saved imagen object
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.internalServerError().body("Error saving image: " + e.getMessage());
     }
-
-    @DeleteMapping("/imagen/{id}")
-    public ResponseEntity<?> deleteImagen (@PathVariable("id") Long id) {
-        try{
-            imagenService.removeImagenByID(id);
-            return ResponseEntity.noContent().build();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().body("Error al eliminar la imagen");
-        }
-    }
-
+}
     @GetMapping("/imagen/paciente/{id}")
     public List<Imagen> getImagenes (@PathVariable("id") Long id) {
         return imagenService.getImagenesPaciente(id);

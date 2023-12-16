@@ -19,6 +19,17 @@ public class Imagen {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
+    // @Column(name = "file_conent")
+    // private byte[] file_conent;
+
+    // public byte[] getFile_content(){
+    //     return file_conent;
+    // }
+
+    // public void setFile_content(byte[] file_conent){
+    //     this.file_conent
+    // }
+
     // Constructor vacío
     public Imagen() {
     }
@@ -66,4 +77,10 @@ public class Imagen {
                 ", paciente=" + paciente +
                 '}';
     }
+    public Imagen(String path, Paciente paciente)
+    {
+        this.path = path;
+        this.paciente = paciente;
+    }
+
 }
