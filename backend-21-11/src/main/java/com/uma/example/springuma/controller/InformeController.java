@@ -41,6 +41,7 @@ public class InformeController {
     @PostMapping(value = "/informe",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
 	public ResponseEntity<?> saveInforme(@RequestBody Informe informe) {
         try{
+            System.out.println(informe);
             informeService.addInforme(informe);
             return ResponseEntity.noContent().build();
         }

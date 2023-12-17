@@ -56,9 +56,10 @@ public class Informe {
         // Constructor vacío necesario para JPA
     }
 
-    public Informe(String prediccion, String contenido) {
+    public Informe(String prediccion, String contenido, Imagen imagen) {
         this.prediccion = prediccion;
         this.contenido = contenido;
+        this.imagen = imagen;
     }
 
     public boolean equals(Object obj)
@@ -73,6 +74,6 @@ public class Informe {
     
     public String toString()
     {
-	    return "Predicción = " + this.prediccion + "; " + " Contenido = " + this.contenido;    
+	    return "Predicción = " + this.prediccion + "; " + " Contenido = " + this.contenido + " imagen = " + this.imagen ;    
     }
 }
