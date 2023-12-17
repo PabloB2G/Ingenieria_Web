@@ -36,6 +36,14 @@ public class Informe {
         this.id = id;
     }
 
+    public Imagen getImaagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen id) {
+        this.imagen = id;
+    }
+
     public String getPrediccion() {
         return prediccion;
     }

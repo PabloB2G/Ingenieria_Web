@@ -23,11 +23,11 @@ public class ImagenAPIPredictor {
 
     private static final String API_URL = "https://api-inference.huggingface.co/models/MUmairAB/Breast_Cancer_Detector";
     private static final String TOKEN = "Bearer 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";
-
+    private static final String directory_images = "backend-21-11/src/main/resources/static/images/";
 
     public static Map<String, Double> query(String filename) throws IOException, Exception {
         
-        byte[] data = Files.readAllBytes(Paths.get(filename));
+        byte[] data = Files.readAllBytes(Paths.get(directory_images+filename));
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(API_URL);
             request.setHeader("Authorization", TOKEN);
@@ -46,9 +46,6 @@ public class ImagenAPIPredictor {
             Map<String, Double> resultMap = new HashMap<>();
             for (Map<String, Object> entry : responseList) {
                 resultMap.put((String) entry.get("label"), (Double) entry.get("score"));
-
-                System.out.println( entry.get("label"));
-                System.out.println( entry.get("score"));
 
             }
             return resultMap;

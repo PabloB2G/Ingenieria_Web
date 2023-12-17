@@ -42,8 +42,13 @@ public ResponseEntity<?> saveImagen(@RequestParam("file") MultipartFile file,
                                     @RequestParam("paciente") String pacienteJson) {
     try {
         // Define the directory where you want to save the file
-        String directory = "backend-21-11/src/main/resources/static/images/";
-        Path storageDirectory = Paths.get(directory);
+        String directory_static = "backend-21-11/src/main/resources/static/";
+        Path staticDirectory = Paths.get(directory_static);
+        if (!Files.exists(staticDirectory)) {
+            Files.createDirectories(staticDirectory); // Create directory if it doesn't exist
+        }
+        String directory_images = "backend-21-11/src/main/resources/static/images/";
+        Path storageDirectory = Paths.get(directory_images);
         if (!Files.exists(storageDirectory)) {
             Files.createDirectories(storageDirectory); // Create directory if it doesn't exist
         }
@@ -59,9 +64,9 @@ public ResponseEntity<?> saveImagen(@RequestParam("file") MultipartFile file,
         imagen.setPath(file.getOriginalFilename());
         Paciente paciente = new ObjectMapper().readValue(pacienteJson, Paciente.class);
         imagen.setPaciente(paciente);
-        imagenService.addImagen(imagen);
+        Imagen saved = imagenService.addImagen(imagen);
 
-        return ResponseEntity.ok(imagen); // Return the saved imagen object
+        return ResponseEntity.ok(saved); // Return the saved imagen object
     } catch (Exception e) {
         e.printStackTrace();
         return ResponseEntity.internalServerError().body("Error saving image: " + e.getMessage());
