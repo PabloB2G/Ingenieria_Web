@@ -25,9 +25,9 @@ public class ImagenAPIPredictor {
     private static final String TOKEN = "Bearer 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";
     private static final String directory_images = "backend-21-11/src/main/resources/static/images/";
 
-    public static Map<String, Double> query(String filename) throws IOException, Exception {
+    public static Map<String, Double> query(byte[] file_data) throws IOException, Exception {
         
-        byte[] data = Files.readAllBytes(Paths.get(directory_images+filename));
+        byte[] data = file_data;
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(API_URL);
             request.setHeader("Authorization", TOKEN);

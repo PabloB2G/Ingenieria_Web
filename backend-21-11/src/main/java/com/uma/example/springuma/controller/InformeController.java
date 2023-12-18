@@ -38,6 +38,7 @@ public class InformeController {
         return informeService.getInformesImagen(id);
     }
 
+    
     @PostMapping(value = "/informe",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
 	public ResponseEntity<?> saveInforme(@RequestBody Informe informe) {
         try{
@@ -48,7 +49,9 @@ public class InformeController {
             return ResponseEntity.internalServerError().body("El informe ya existe");
         }
 	}
+    
 
+    
     @PutMapping(value = "/informe",     consumes = {MediaType.APPLICATION_JSON_VALUE} )
     public ResponseEntity<?> updateCuenta (@RequestBody Informe informe) {
         try{
@@ -60,6 +63,7 @@ public class InformeController {
             return ResponseEntity.internalServerError().body("Error al actualizar el informe ");
         }
     }
+    
 
     @DeleteMapping("/informe/{id}")
     public ResponseEntity<?> deleteInforme(@PathVariable("id") Long id) {

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.uma.example.springuma.utils.ImageUtils;
+
 import java.util.Map;
 
 
@@ -21,6 +24,7 @@ public class InformeService {
         return repositoryInforme.findById(id).orElse(null);
     }
 
+    
     public Informe addInforme(Informe informe) {
         String neew_pred = getNewPrediccion(informe);
         System.out.println(neew_pred);
@@ -28,7 +32,9 @@ public class InformeService {
 
         return repositoryInforme.saveAndFlush(informe);
     }
+    
 
+    
     public void updateInforme(Informe informe) {
         // Puedes implementar la lógica de actualización según tus necesidades
         // Aquí se muestra un ejemplo básico:
@@ -39,6 +45,7 @@ public class InformeService {
             repositoryInforme.save(existingInforme);
         }
     }
+    
 
     public void removeInforme(Informe informe) {
         repositoryInforme.delete(informe);
@@ -52,9 +59,10 @@ public class InformeService {
         return repositoryInforme.findByImagenId(id);
     }
 
+    
     public String getNewPrediccion(Informe informe){
         try{
-        Map<String, Double> response = ImagenAPIPredictor.query(informe.getImaagen().getPath());
+        Map<String, Double> response = ImagenAPIPredictor.query(ImageUtils.decompressImage(informe.getImaagen().getFile_content()));
         //informe.setPrediccion((String)response.get("0"));
         System.out.println("resp");
         System.out.println( response);
@@ -71,9 +79,10 @@ public class InformeService {
         return resulString;
 
     }catch(Exception e){
-        return "Modle is loading";
+        return "Modle is loading: ";
     }
         
         
     }
+    
 }

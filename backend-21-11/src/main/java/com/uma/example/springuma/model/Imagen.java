@@ -11,24 +11,25 @@ public class Imagen {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "path")
-    private String path;
+    @Column(name = "nombre")
+    private String nombre;
 
     // Relación con Paciente (muchas imágenes pueden pertenecer a un paciente)
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    // @Column(name = "file_conent")
-    // private byte[] file_conent;
+    @Lob
+    @Column(name = "file_content")
+    private byte[] file_content;
 
-    // public byte[] getFile_content(){
-    //     return file_conent;
-    // }
+    public byte[] getFile_content(){
+         return file_content;
+     }
 
-    // public void setFile_content(byte[] file_conent){
-    //     this.file_conent
-    // }
+     public void setFile_content(byte[] file_content){
+         this.file_content = file_content;
+}
 
     // Constructor vacío
     public Imagen() {
@@ -43,12 +44,12 @@ public class Imagen {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Paciente getPaciente() {
@@ -67,19 +68,19 @@ public class Imagen {
     }
     @Override
     public int hashCode() {
-        return this.path.hashCode();
+        return this.nombre.hashCode();
     }
     @Override
     public String toString() {
         return "Imagen{" +
                 "id=" + id +
-                ", path='" + path + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", paciente=" + paciente +
                 '}';
     }
-    public Imagen(String path, Paciente paciente)
+    public Imagen(byte[] file_content, Paciente paciente)
     {
-        this.path = path;
+        this.file_content = file_content;
         this.paciente = paciente;
     }
 
