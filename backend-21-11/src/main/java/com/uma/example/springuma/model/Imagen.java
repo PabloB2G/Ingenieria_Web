@@ -1,5 +1,7 @@
 package com.uma.example.springuma.model;
 
+import java.util.Calendar;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -14,6 +16,16 @@ public class Imagen {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "fecha")
+    private Calendar fecha;
+
+    public Calendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
+    }
     // Relación con Paciente (muchas imágenes pueden pertenecer a un paciente)
     @ManyToOne
     @JoinColumn(name = "paciente_id")

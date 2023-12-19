@@ -8,6 +8,7 @@ import com.uma.example.springuma.utils.ImageUtils;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,7 @@ public class ImagenService {
         imagen.setNombre(file.getOriginalFilename());
         imagen.setFile_content(ImageUtils.compressImage(file.getBytes()));
         imagen.setPaciente(paciente);
+        imagen.setFecha(Calendar.getInstance());
         repositoryImagen.save(imagen);
         if (imagen != null) {
             return "file uploaded successfully : " + file.getOriginalFilename();

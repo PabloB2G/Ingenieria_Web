@@ -79,7 +79,7 @@ public class InformeService {
         return resulString;
 
     }catch(Exception e){
-        return "Modle is loading: ";
+        return "Model is loading: ";
     }
         
         
