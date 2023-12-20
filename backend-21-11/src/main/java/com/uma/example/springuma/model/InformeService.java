@@ -26,9 +26,10 @@ public class InformeService {
 
     
     public Informe addInforme(Informe informe) {
-        String neew_pred = getNewPrediccion(informe);
-        System.out.println(neew_pred);
-        informe.setPrediccion(neew_pred);
+        //String neew_pred = getNewPrediccion(informe);
+        //double neew_pred = Math.random();
+        //System.out.println(neew_pred);
+        //informe.setPrediccion(Double.toString((neew_pred)));
 
         return repositoryInforme.saveAndFlush(informe);
     }
