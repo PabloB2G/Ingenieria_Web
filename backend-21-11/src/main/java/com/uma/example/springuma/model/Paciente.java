@@ -1,5 +1,8 @@
 package com.uma.example.springuma.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -24,7 +27,8 @@ public class Paciente {
     @Column(name = "dni", unique = true)
     private String dni;
 
-    @ManyToOne
+    @ManyToOne()
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Medico medico;
 
     // Constructor vacío

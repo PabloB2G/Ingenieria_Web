@@ -2,6 +2,9 @@ package com.uma.example.springuma.model;
 
 import java.util.Calendar;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -27,7 +30,8 @@ public class Imagen {
         this.fecha = fecha;
     }
     // Relación con Paciente (muchas imágenes pueden pertenecer a un paciente)
-    @ManyToOne
+    @ManyToOne()
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
