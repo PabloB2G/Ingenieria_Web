@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,5 +58,17 @@ public class ImagenController {
     @GetMapping("/imagen/paciente/{id}")
     public List<Imagen> getImagenes (@PathVariable("id") Long id) {
         return imagenService.getImagenesPaciente(id);
+    }
+
+    @DeleteMapping("/imagen/{id}")
+    public ResponseEntity<?> deleteCuenta(@PathVariable("id") Long id) {
+        try{
+            imagenService.removeImagenByID(id);
+            return ResponseEntity.noContent().build();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Error al eliminar el paciente");
+        }
     }
 }
